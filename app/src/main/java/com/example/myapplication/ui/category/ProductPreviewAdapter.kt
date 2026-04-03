@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.data.local.entity.ProductEntity
 import com.example.myapplication.databinding.ItemProductPreviewBinding
+import com.example.myapplication.util.formatProductExpiry
 
 class ProductPreviewAdapter(
     private val onProductClick: (ProductEntity) -> Unit
@@ -44,6 +45,7 @@ class ProductPreviewAdapter(
                 R.string.product_price_format,
                 item.price
             )
+            binding.tvExpiry.text = formatProductExpiry(binding.root.context, item.expiryDateMillis)
         }
     }
 

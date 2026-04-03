@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,19 +15,23 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.data.local.AppDatabase
+import com.example.myapplication.data.repository.OrderRepository
 import com.example.myapplication.data.repository.ProductRepository
+import com.example.myapplication.data.session.SessionManager
 import com.example.myapplication.databinding.FragmentProductDetailBinding
-import com.example.myapplication.ui.products.ProductViewModel
+import com.example.myapplication.util.formatProductExpiry
 import kotlinx.coroutines.launch
 
 class ProductDetailFragment : Fragment() {
+    private lateinit var sessionManager: SessionManager
+    private lateinit var orderRepository: OrderRepository
+
     private var _binding: FragmentProductDetailBinding? = null
     private val binding get() = _binding!!
 
     private val args: ProductDetailFragmentArgs by navArgs()
 
     private val viewModel: ProductDetailViewModel by viewModels {
-
         ProductDetailViewModelFactory(
             ProductRepository(
                 AppDatabase.getInstance(requireContext()).productDao()
@@ -46,8 +51,13 @@ class ProductDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sessionManager = SessionManager(requireContext())
+        orderRepository = OrderRepository(AppDatabase.getInstance(requireContext()).orderDao())
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+        binding.btnAddToCart.setOnClickListener {
+            addCurrentProductToCart()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -65,7 +75,9 @@ class ProductDetailFragment : Fragment() {
                             .into(binding.ivProductDetail)
                         binding.tvName.text = product.name
                         binding.tvDescription.text = product.description
-                        binding.tvPrice.text = getString(R.string.product_price_format, product.price)
+                        binding.tvPrice.text =
+                            getString(R.string.product_price_format, product.price)
+                        binding.tvExpiry.text = formatProductExpiry(requireContext(), product.expiryDateMillis)
                     }
                 }
             }
@@ -75,5 +87,21 @@ class ProductDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun addCurrentProductToCart() {
+        val product = viewModel.uiState.value.product ?: return
+        val userId = sessionManager.getCurrentUserId()
+        if (userId == null) {
+            Toast.makeText(requireContext(), R.string.require_login_message, Toast.LENGTH_SHORT)
+                .show()
+            findNavController().navigate(R.id.loginFragment)
+            return
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            orderRepository.addProductToCart(userId, product.id, product.price)
+            Toast.makeText(requireContext(), R.string.added_to_cart_success, Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 }

@@ -15,6 +15,7 @@ import com.example.myapplication.data.local.AppDatabase
 import com.example.myapplication.data.repository.CategoryRepository
 import com.example.myapplication.data.repository.ProductRepository
 import com.example.myapplication.databinding.FragmentCategoriesBinding
+import com.example.myapplication.ui.categories.CategoriesFragmentDirections
 import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {

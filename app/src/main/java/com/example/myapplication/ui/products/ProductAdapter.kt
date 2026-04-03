@@ -9,9 +9,11 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.data.local.entity.ProductEntity
 import com.example.myapplication.databinding.ItemProductBinding
+import com.example.myapplication.util.formatProductExpiry
 
 class ProductAdapter(
-    private val onItemClick: (ProductEntity) -> Unit
+    private val onItemClick: (ProductEntity) -> Unit,
+    private val onAddToCartClick: (ProductEntity) -> Unit
 ) : ListAdapter<ProductEntity, ProductAdapter.ProductViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -20,7 +22,7 @@ class ProductAdapter(
             parent,
             false
         )
-        return ProductViewHolder(binding, onItemClick)
+        return ProductViewHolder(binding, onItemClick, onAddToCartClick)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -29,10 +31,12 @@ class ProductAdapter(
 
     class ProductViewHolder(
         private val binding: ItemProductBinding,
-        private val onItemClick: (ProductEntity) -> Unit
+        private val onItemClick: (ProductEntity) -> Unit,
+        private val onAddToCartClick: (ProductEntity) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductEntity) {
             binding.root.setOnClickListener { onItemClick(item) }
+            binding.btnAddToCart.setOnClickListener { onAddToCartClick(item) }
             Glide.with(binding.ivProduct.context)
                 .load(item.imageUrl)
                 .placeholder(R.drawable.ic_launcher_foreground)
@@ -45,6 +49,7 @@ class ProductAdapter(
                 R.string.product_price_format,
                 item.price
             )
+            binding.tvExpiry.text = formatProductExpiry(binding.root.context, item.expiryDateMillis)
         }
     }
 
