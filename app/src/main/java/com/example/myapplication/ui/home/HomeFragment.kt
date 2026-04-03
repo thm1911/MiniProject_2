@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.loginFragment)
         }
         binding.btnGoProducts.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProductsFragment())
         }
         binding.btnGoCategories.setOnClickListener {
         }
