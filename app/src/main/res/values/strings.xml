@@ -1,4 +1,20 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="home_fragment_title">Home Fragment</string>
+    <string name="app_name">ShoppingApp</string>
+    <string name="home_fragment_title">Home Screen</string>
+    <string name="login_screen_title">Login</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_products">Xem danh sach Products</string>
+    <string name="menu_categories">Xem Categories</string>
+    <string name="menu_product_detail">Xem chi tiet Product</string>
+    <string name="products_screen_title">Products Screen</string>
+    <string name="categories_screen_title">Categories Screen</string>
+    <string name="product_detail_screen_title">Product Detail Screen</string>
+    <string name="back_button">Back</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="login_button">Dang nhap</string>
+    <string name="logout_button">Dang xuat</string>
+    <string name="login_default_message">Vui long dang nhap de tiep tuc</string>
+    <string name="login_success_message">Xin chao, %1$s</string>
+    <string name="no_name">Xin chao, ___</string>
 </resources>
