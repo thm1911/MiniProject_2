@@ -1,10 +1,11 @@
 package com.example.myapplication.ui.home
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -33,11 +34,26 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.loginFragment)
         }
         binding.btnGoProducts.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProductsFragment())
+            // Navigate by destination id to avoid action-resolution issues at runtime.
+            findNavController().navigate(R.id.productsFragment)
         }
         binding.btnGoCategories.setOnClickListener {
+            findNavController().navigate(R.id.categoriesFragment)
         }
-        binding.btnGoProductDetail.setOnClickListener {
+        binding.btnGoOrders.setOnClickListener {
+            if (sessionManager.isLoggedIn()) {
+                findNavController().navigate(R.id.ordersFragment)
+            } else {
+                Toast.makeText(requireContext(), R.string.require_login_message, Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.loginFragment)
+            }
+        }
+        binding.btnLogout.setOnClickListener {
+            if (!sessionManager.isLoggedIn()) {
+                Toast.makeText(requireContext(), R.string.require_login_message, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            showLogoutConfirmDialog()
         }
 
         setFullName()
@@ -45,7 +61,20 @@ class HomeFragment : Fragment() {
 
     private fun setFullName(){
         val fullName = sessionManager.getCurrentFullName()
-        if(fullName != "") binding.tvFullName.text = "Xin chao, $fullName"
+        binding.tvFullName.text = if (fullName != "") "Xin chào, $fullName" else getString(R.string.no_name)
+    }
+
+    private fun showLogoutConfirmDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.logout_confirm_title)
+            .setMessage(R.string.logout_confirm_message)
+            .setPositiveButton(R.string.yes) { _, _ ->
+                sessionManager.clearSession()
+                setFullName()
+                Toast.makeText(requireContext(), R.string.logout_success_message, Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(R.string.no, null)
+            .show()
     }
 
     override fun onDestroyView() {

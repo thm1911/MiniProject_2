@@ -15,9 +15,7 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE category_id = :categoryId ORDER BY id DESC")
     fun getProductsByCategory(categoryId: Long): Flow<List<ProductEntity>>
 
-
-
-
+    @Query("SELECT * FROM products ORDER BY id DESC")
     fun getAllProducts(): Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM products WHERE id = :id LIMIT 1")

@@ -44,5 +44,16 @@
             android:textSize="12sp"
             android:textStyle="bold"
             tools:text="0 VND" />
+
+        <TextView
+            android:id="@+id/tvExpiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            tools:text="HSD: 01/01/2026" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

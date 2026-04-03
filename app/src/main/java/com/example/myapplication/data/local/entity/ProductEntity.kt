@@ -26,5 +26,7 @@ data class ProductEntity(
     val description: String,
     val price: Double,
     @ColumnInfo(name = "category_id")
-    val categoryId: Long
+    val categoryId: Long,
+    @ColumnInfo(name = "expiry_date_millis")
+    val expiryDateMillis: Long? = null
 )

@@ -2,6 +2,7 @@ package com.example.myapplication.data.session
 
 import android.content.Context
 
+
 class SessionManager(context: Context) {
     private val sharedPreferences =
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -20,6 +21,11 @@ class SessionManager(context: Context) {
     }
 
     fun isLoggedIn(): Boolean = sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)
+    fun getCurrentUserId(): Long? {
+        if (!isLoggedIn()) return null
+        val userId = sharedPreferences.getLong(KEY_USER_ID, -1L)
+        return if (userId > 0) userId else null
+    }
     fun getCurrentFullName(): String = sharedPreferences.getString(KEY_FULL_NAME, "") ?: ""
 
     companion object {

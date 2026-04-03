@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
@@ -10,4 +9,5 @@
     <color name="card_background">#FFFFFFFF</color>
     <color name="text_primary">#1A2238</color>
     <color name="text_secondary">#667085</color>
+    <color name="danger_red">#E53935</color>
 </resources>
