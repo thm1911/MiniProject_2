@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_background"
-    tools:context=".ProductsFragment">
+    tools:context=".ui.products.ProductsFragment">
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -36,5 +36,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvProductsTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_product" />
+
+    <TextView
+        android:id="@+id/tvEmptyProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_products"
+        android:textColor="@color/text_secondary"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/rvProducts"
+        app:layout_constraintBottom_toBottomOf="@id/rvProducts"
+        app:layout_constraintStart_toStartOf="@id/rvProducts"
+        app:layout_constraintEnd_toEndOf="@id/rvProducts" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

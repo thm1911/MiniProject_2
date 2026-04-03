@@ -10,6 +10,9 @@
     <string name="categories_screen_title">Categories Screen</string>
     <string name="product_detail_screen_title">Product Detail Screen</string>
     <string name="back_button">Back</string>
+    <string name="product_image">Product image</string>
+    <string name="no_products">Chua co san pham</string>
+    <string name="product_price_format">%.0f VND</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="login_button">Dang nhap</string>
