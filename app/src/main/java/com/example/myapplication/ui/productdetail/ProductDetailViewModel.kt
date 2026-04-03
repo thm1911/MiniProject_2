@@ -1,17 +1,10 @@
 package com.example.myapplication.ui.productdetail
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
 import com.example.myapplication.data.local.entity.ProductEntity
 import com.example.myapplication.data.repository.ProductRepository
-import com.example.myapplication.databinding.ItemProductBinding
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

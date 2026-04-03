@@ -9,5 +9,8 @@ class ProductRepository(
 ) {
     fun getAllProducts(): Flow<List<ProductEntity>> = productDao.getAllProducts()
 
+    fun getProductsByCategory(categoryId: Long): Flow<List<ProductEntity>> =
+        productDao.getProductsByCategory(categoryId)
+
     fun getProductById(id: Long) = productDao.getProductById(id)
 }

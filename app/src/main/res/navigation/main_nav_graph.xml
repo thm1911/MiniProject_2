@@ -29,6 +29,14 @@
         android:name="com.example.myapplication.ui.products.ProductsFragment"
         android:label="@string/products_screen_title"
         tools:layout="@layout/fragment_products">
+        <argument
+            android:name="categoryId"
+            android:defaultValue="-1L"
+            app:argType="long" />
+        <argument
+            android:name="categoryTitle"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/action_productsFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
@@ -36,9 +44,16 @@
 
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.myapplication.CategoriesFragment"
+        android:name="com.example.myapplication.ui.category.CategoriesFragment"
         android:label="@string/categories_screen_title"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_categoriesFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/productDetailFragment"
