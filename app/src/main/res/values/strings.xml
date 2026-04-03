@@ -2,7 +2,7 @@
     <string name="home_fragment_title">Màn hình chính</string>
     <string name="login_screen_title">Đăng nhập</string>
     <string name="menu_login">Đăng nhập</string>
-    <string name="menu_products">Xem danh sách sản phẩm</string>
+    <string name="menu_products">Xem danh sách sản phẩm bán ngày hôm nay</string>
     <string name="menu_categories">Xem danh mục</string>
     <string name="menu_orders">Đơn hàng của bạn</string>
     <string name="menu_product_detail">Xem chi tiết sản phẩm</string>

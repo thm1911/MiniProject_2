@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.data.local.AppDatabase
+import com.example.myapplication.data.repository.AuthRepository
 import com.example.myapplication.data.session.SessionManager
+import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.ui.login.LoginViewModel
 
 import kotlinx.coroutines.launch

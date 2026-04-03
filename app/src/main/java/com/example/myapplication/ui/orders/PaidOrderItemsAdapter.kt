@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.data.local.dao.OrderItemRow
 import com.example.myapplication.databinding.ItemOrderProductBinding
 
@@ -34,7 +35,7 @@ class PaidOrderItemsAdapter : ListAdapter<OrderItemRow, PaidOrderItemsAdapter.It
             binding.tvProductMeta.text = "Số lượng: ${item.quantity}"
             val lineTotal = item.quantity * item.unitPrice
             binding.tvLineTotal.text = binding.root.context.getString(
-                com.example.shoppingapp.R.string.product_price_format,
+                R.string.product_price_format,
                 lineTotal
             )
         }
