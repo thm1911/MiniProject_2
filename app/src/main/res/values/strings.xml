@@ -20,4 +20,6 @@
     <string name="login_default_message">Vui long dang nhap de tiep tuc</string>
     <string name="login_success_message">Xin chao, %1$s</string>
     <string name="no_name">Xin chao, ___</string>
+    <string name="view_all">Xem tat ca</string>
+    <string name="no_categories">Chua co danh muc</string>
 </resources>

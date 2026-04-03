@@ -12,7 +12,12 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProducts(products: List<ProductEntity>)
 
-    @Query("SELECT * FROM products ORDER BY id DESC")
+    @Query("SELECT * FROM products WHERE category_id = :categoryId ORDER BY id DESC")
+    fun getProductsByCategory(categoryId: Long): Flow<List<ProductEntity>>
+
+
+
+
     fun getAllProducts(): Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM products WHERE id = :id LIMIT 1")

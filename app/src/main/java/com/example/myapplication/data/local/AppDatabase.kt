@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.myapplication.data.local.dao.CategoryDao
 import com.example.myapplication.data.local.dao.ProductDao
+import com.example.myapplication.data.local.entity.CategoryEntity
 import com.example.myapplication.data.local.entity.ProductEntity
 import com.example.myapplication.data.local.entity.UserEntity
 import com.example.shoppingapp.data.local.dao.UserDao
@@ -23,6 +25,7 @@ import kotlinx.coroutines.launch
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun productDao(): ProductDao
+    abstract fun categoryDao(): CategoryDao
 
     private class SeedCallback : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
@@ -41,6 +44,14 @@ abstract class AppDatabase : RoomDatabase() {
                                 password = "123456",
                                 fullName = "Nguyen Van A"
                             )
+                        )
+                    )
+                    database.categoryDao().insertCategories(
+                        listOf(
+                            CategoryEntity(1, "Trái cây nội địa"),
+                            CategoryEntity(2, "Trái cây nhập khẩu"),
+                            CategoryEntity(3, "Trái cây cắt sẵn"),
+                            CategoryEntity(4, "Nước ép & Sinh tố")
                         )
                     )
                     database.productDao().insertProducts(

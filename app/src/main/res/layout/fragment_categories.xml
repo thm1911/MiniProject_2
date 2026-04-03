@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_background"
-    tools:context=".CategoriesFragment">
+    tools:context="com.example.myapplication.ui.category.CategoriesFragment">
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -17,9 +17,9 @@
         android:contentDescription="@string/back_button"
         android:padding="8dp"
         android:src="@drawable/ic_arrow_back_24"
-        app:tint="@color/brand_primary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/brand_primary" />
 
     <TextView
         android:id="@+id/tvCategoriesTitle"
@@ -32,9 +32,34 @@
         android:textColor="@color/text_primary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategorySections"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCategoriesTitle"
+        tools:listitem="@layout/item_category_section" />
+
+    <TextView
+        android:id="@+id/tvEmptyCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_categories"
+        android:textColor="@color/text_secondary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rvCategorySections"
+        app:layout_constraintEnd_toEndOf="@id/rvCategorySections"
+        app:layout_constraintStart_toStartOf="@id/rvCategorySections"
+        app:layout_constraintTop_toTopOf="@id/rvCategorySections" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
